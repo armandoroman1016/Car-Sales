@@ -17,8 +17,19 @@ const initialState = {
 
 export const carReducer = (state = initialState, action) => {
 
-        return {
-            ...state
+        switch(action.type){
+            case 'ADD_FEATURE':
+                return {
+                    ...state,
+                    car : {...state.car, price: state.car.price + action.payload.featurePrice, features: [...state.car.features, action.payload]}
+                }
+            case 'REMOVE_FEATURE':
+                return {
+                    ...state,
+                    car : {...state.car, price: state.car.price + action.payload.featurePrice, features: [...state.car.features, action.payload.featureName]}
+                }
+            default:
+                return state;
         }
     
 }
